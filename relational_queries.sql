@@ -7,3 +7,9 @@ SELECT a.owner_name, le.transaction_type, le.amount
 FROM accounts a
          JOIN ledger_entries le ON a.id = le.account_id
 WHERE a.id = 'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d';
+
+SELECT a.owner_name, nk.alias_value, le.transaction_type, le.amount
+FROM natural_keys nk
+         JOIN accounts a ON nk.account_id = a.id
+         JOIN ledger_entries le ON a.id = le.account_id
+WHERE nk.alias_value = 'alice@example.com';
