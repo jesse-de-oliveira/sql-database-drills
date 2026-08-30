@@ -25,3 +25,13 @@ ROLLBACK;
 
 SELECT balance FROM accounts
 WHERE owner_name = 'Alice';
+
+EXPLAIN ANALYZE
+SELECT * FROM accounts WHERE owner_name = 'Alice';
+
+CREATE INDEX idx_accounts_owner_name ON accounts(owner_name);
+
+SET enable_seqscan = OFF;
+
+EXPLAIN ANALYZE
+SELECT * FROM accounts WHERE owner_name = 'Alice';
